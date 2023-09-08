@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "ob_movie")
+@Table(name = "cn_movie")
 @Setter
 @Getter
 public class Movie {

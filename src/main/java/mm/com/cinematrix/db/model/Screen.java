@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "ob_screen")
+@Table(name = "cn_screen")
 @Getter
 @Setter
 public class Screen {
