@@ -4,6 +4,7 @@ import org.springframework.security.crypto.encrypt.Encryptors;
 import org.springframework.security.crypto.encrypt.TextEncryptor;
 import org.springframework.stereotype.Component;
 
+// use encoding if this becomes performance problem, we kinda not need encryption anyways
 @Component
 public class EncryptionUtil {
 
