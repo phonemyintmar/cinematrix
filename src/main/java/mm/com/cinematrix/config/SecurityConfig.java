@@ -9,7 +9,7 @@ public class SecurityConfig {
 
     private static final String[] unSecuredUrls = new String[]{
             "/show/**",
-
+            "/admin/**",
     };
 
     @Bean

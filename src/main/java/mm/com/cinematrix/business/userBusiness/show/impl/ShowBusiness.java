@@ -1,9 +1,8 @@
-package mm.com.cinematrix.business.show.impl;
+package mm.com.cinematrix.business.userBusiness.show.impl;
 
 import com.pm.ResponseUtil;
 import lombok.extern.slf4j.Slf4j;
-import mm.com.cinematrix.business.show.IShowBusiness;
-import mm.com.cinematrix.db.repo.ShowRepo;
+import mm.com.cinematrix.business.userBusiness.show.IShowBusiness;
 import mm.com.cinematrix.log.Loggable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;

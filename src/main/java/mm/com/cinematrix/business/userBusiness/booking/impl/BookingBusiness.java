@@ -1,8 +1,8 @@
-package mm.com.cinematrix.business.booking.impl;
+package mm.com.cinematrix.business.userBusiness.booking.impl;
 
 import lombok.extern.slf4j.Slf4j;
-import mm.com.cinematrix.business.booking.IBookingBusiness;
-import mm.com.cinematrix.business.booking.dto.SampleBooking;
+import mm.com.cinematrix.business.userBusiness.booking.IBookingBusiness;
+import mm.com.cinematrix.business.dto.SampleBooking;
 import mm.com.cinematrix.config.AppConfig;
 import mm.com.cinematrix.db.model.Booking;
 import mm.com.cinematrix.db.repo.BookingRepo;

@@ -1,27 +1,49 @@
 package mm.com.cinematrix.controller.admin;
 
-import mm.com.cinematrix.business.movie.dto.MovieRequest;
+import mm.com.cinematrix.business.adminBusiness.movie.IMovieBusiness;
+import mm.com.cinematrix.business.dto.MovieRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
-import java.security.Principal;
-import java.util.List;
 
 @RestController
 @RequestMapping("/admin")
 @CrossOrigin
-@RolesAllowed("ROLE_SUPER_ADMIN")
 public class AdminShowController {
+    private final IMovieBusiness iMovieBusiness;
 
-    @PostMapping("")
-    public ResponseEntity<?> addMovie(@Valid @RequestBody MovieRequest movieRequest, Principal principal){
-        return ResponseEntity.ok(List.of(movieRequest,principal));
+    public AdminShowController(IMovieBusiness iMovieBusiness) {
+        this.iMovieBusiness = iMovieBusiness;
     }
 
-    @GetMapping("/test")
-    public String test(){
-        return "lee";
+    @PostMapping("/movie")
+    public ResponseEntity<?> addMovie(@RequestBody @Valid MovieRequest movieRequest) {
+        return iMovieBusiness.addMovie(movieRequest);
+    }
+
+    @GetMapping("/movie")
+    public ResponseEntity<?> getAllMovies() {
+        return iMovieBusiness.getAllMovies();
+    }
+
+    @GetMapping("/movie/search")
+    public ResponseEntity<?> getMovieByName(@RequestParam String name) {
+        return iMovieBusiness.searchMovie(name);
+    }
+
+    @GetMapping("/movie/{movieId}/get")
+    public ResponseEntity<?> getMovieById(@PathVariable String movieId) {
+        return iMovieBusiness.getMovieById(movieId);
+    }
+
+    @GetMapping("/movie/{movieId}/delete")
+    public ResponseEntity<?> deleteById(@PathVariable String movieId) {
+        return iMovieBusiness.deleteMovie(movieId);
+    }
+
+    @PostMapping("/movie/{movieName}/update")
+    public ResponseEntity<?> updateMovie(@RequestBody @Valid MovieRequest movieRequest, @PathVariable("movieName") String movieName) {
+        return iMovieBusiness.updateMovie(movieRequest, movieName);
     }
 }

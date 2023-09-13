@@ -1,4 +1,4 @@
-package mm.com.cinematrix.business.booking.dto;
+package mm.com.cinematrix.business.dto;
 
 
 import lombok.Data;
