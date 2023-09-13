@@ -8,10 +8,6 @@ import mm.com.cinematrix.business.dto.MovieRequest;
 import mm.com.cinematrix.db.model.Movie;
 import mm.com.cinematrix.db.repo.MovieRepo;
 import mm.com.cinematrix.util.CinematrixResponse;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -36,21 +32,6 @@ public class MovieBusiness extends BaseBusiness implements IMovieBusiness {
             return ResponseUtil.on5xxError();
         }
         return ResponseUtil.onDefaultSuccess(movieRequest);
-    }
-
-    @Override
-    public ResponseEntity<?> getMovies(String name, int pageNo, int pageSize) {
-        Sort sort = Sort.by("created_date").descending();
-        Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
-        Page<Movie> movies = movieRepo.getMovies(name, pageable);
-        return ResponseUtil.onDefaultSuccess(movies);
-    }
-
-    @Override
-    public ResponseEntity<?> getMovieById(String movieId) {
-        Optional<Movie> movieOp = movieRepo.findByMovieId(movieId);
-        if (movieOp.isEmpty()) return ResponseUtil.onError(CinematrixResponse.WRONG_REQUEST, HttpStatus.NOT_FOUND);
-        return ResponseUtil.onDefaultSuccess(movieOp.get());
     }
 
     @Override
@@ -91,4 +72,5 @@ public class MovieBusiness extends BaseBusiness implements IMovieBusiness {
         }
         return ResponseUtil.onDefaultSuccess("Movie Deleted!");
     }
+
 }

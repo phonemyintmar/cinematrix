@@ -1,20 +1,25 @@
 package mm.com.cinematrix.controller.admin;
 
 import mm.com.cinematrix.business.adminBusiness.movie.IMovieBusiness;
+import mm.com.cinematrix.business.commonBusiness.ICommonBusiness;
 import mm.com.cinematrix.business.dto.MovieRequest;
+import mm.com.cinematrix.db.model.MovieType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 
 @RestController
 @RequestMapping("/admin")
 @CrossOrigin
-public class AdminShowController {
+public class AdminMovieController {
     private final IMovieBusiness iMovieBusiness;
+    private final ICommonBusiness iCommonBusiness;
 
-    public AdminShowController(IMovieBusiness iMovieBusiness) {
+    public AdminMovieController(IMovieBusiness iMovieBusiness, ICommonBusiness iCommonBusiness) {
         this.iMovieBusiness = iMovieBusiness;
+        this.iCommonBusiness = iCommonBusiness;
     }
 
     @PostMapping("/movie")
@@ -24,16 +29,18 @@ public class AdminShowController {
 
     @GetMapping("/movie")
     public ResponseEntity<?> getAllMovies(
-            @RequestParam(name = "search", required = false) String movieName,
+            @RequestParam(name = "date", required = false) LocalDate date,
+            @RequestParam(name = "movieName", required = false) String movieName,
+            @RequestParam(name = "type", required = false) MovieType movieType,
             @RequestParam(name = "pageNo", defaultValue = "1") Integer pageNo,
             @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize
     ) {
-        return iMovieBusiness.getMovies(movieName, pageNo, pageSize);
+        return iCommonBusiness.getMovies(date, movieName, movieType, pageNo, pageSize);
     }
 
-    @GetMapping("/movie/{movieId}/get")
+    @GetMapping("/movie/{movieId}")
     public ResponseEntity<?> getMovieById(@PathVariable String movieId) {
-        return iMovieBusiness.getMovieById(movieId);
+        return iCommonBusiness.getMovieById(movieId);
     }
 
     @GetMapping("/movie/{movieId}/delete")

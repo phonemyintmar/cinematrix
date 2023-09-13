@@ -11,6 +11,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
@@ -32,6 +33,8 @@ public class MovieRequest {
     @Pattern(regexp = "^(https?://)?([a-zA-Z0-9.-]+\\.[a-z]{2,6})(/\\S*)?$")
     private String bannerUrl;
 
+    private Boolean isFeatured;
+
     @NotBlank
     @NotNull
     @Pattern(regexp = "^(https?://)?([a-zA-Z0-9.-]+\\.[a-z]{2,6})(/\\S*)?$")
@@ -44,6 +47,10 @@ public class MovieRequest {
 
     @Enumerated(EnumType.STRING)
     private MovieType movieType;
+
+    private LocalDate startDate;
+
+    private LocalDate endDate;
 
     @Min(1)
     private int moviePriority;

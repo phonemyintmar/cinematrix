@@ -6,6 +6,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -36,6 +37,12 @@ public class Movie {
 
     private int moviePriority;
 
+    private Boolean isFeatured;
+
+    private LocalDate startDate;
+
+    private LocalDate endDate;
+
     @UpdateTimestamp
     private LocalDateTime updatedDate;
 
@@ -44,7 +51,8 @@ public class Movie {
 
     @JsonIgnore
     private Double totalIncome;
-    public Movie(String movieId,String movieName, String movieCast, String genre, String bannerUrl, String trailerUrl, String description, MovieType movieType, int moviePriority) {
+
+    public Movie(String movieId, String movieName, String movieCast, String genre, String bannerUrl, String trailerUrl, String description, MovieType movieType, int moviePriority, Boolean isFeatured, LocalDate startDate, LocalDate endDate) {
         this.movieId = movieId;
         this.movieName = movieName;
         this.movieCast = movieCast;
@@ -54,16 +62,8 @@ public class Movie {
         this.description = description;
         this.movieType = movieType;
         this.moviePriority = moviePriority;
-    }
-
-    public Movie(String movieName, String movieCast, String genre, String bannerUrl, String trailerUrl, String description, MovieType movieType, int moviePriority) {
-        this.movieName = movieName;
-        this.movieCast = movieCast;
-        this.genre = genre;
-        this.bannerUrl = bannerUrl;
-        this.trailerUrl = trailerUrl;
-        this.description = description;
-        this.movieType = movieType;
-        this.moviePriority = moviePriority;
+        this.isFeatured = isFeatured;
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
 }

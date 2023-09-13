@@ -13,22 +13,24 @@ import java.util.UUID;
 public abstract class BaseBusiness {
     @Autowired
     MovieRepo movieRepo;
+
     public Object changeMovieRequest(Object object) {
-        if(object instanceof MovieRequest){
+        if (object instanceof MovieRequest) {
             MovieRequest movieRequest = (MovieRequest) object;
             return new Movie(
-                    UUID.randomUUID().toString(),movieRequest.getMovieName(), movieRequest.getMovieCast(),
+                    UUID.randomUUID().toString(), movieRequest.getMovieName(), movieRequest.getMovieCast(),
                     movieRequest.getGenre(), movieRequest.getBannerUrl(), movieRequest.getTrailerUrl(),
-                    movieRequest.getDescription(), movieRequest.getMovieType(), movieRequest.getMoviePriority()
+                    movieRequest.getDescription(), movieRequest.getMovieType(), movieRequest.getMoviePriority(),
+                    movieRequest.getIsFeatured(),movieRequest.getStartDate(),movieRequest.getEndDate()
             );
-        }else if(object instanceof Movie){
+        } else if (object instanceof Movie) {
             Movie movie = (Movie) object;
             return new MovieRequest(
                     movie.getMovieName(), movie.getMovieCast(),
-                    movie.getGenre(), movie.getBannerUrl(), movie.getTrailerUrl(),
-                    movie.getDescription(), movie.getMovieType(), movie.getMoviePriority()
+                    movie.getGenre(), movie.getBannerUrl(), movie.getIsFeatured(),movie.getTrailerUrl(),
+                    movie.getDescription(), movie.getMovieType(), movie.getStartDate(), movie.getEndDate(), movie.getMoviePriority()
             );
-        }else {
+        } else {
             return null;
         }
     }
