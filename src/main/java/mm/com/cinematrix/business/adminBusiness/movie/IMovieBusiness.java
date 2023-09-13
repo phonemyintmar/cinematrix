@@ -6,9 +6,8 @@ import org.springframework.http.ResponseEntity;
 public interface IMovieBusiness {
     ResponseEntity<?> addMovie(MovieRequest movieRequest);
 
-    ResponseEntity<?> getAllMovies();
+    ResponseEntity<?> getMovies(String name, int pageNo, int pageSize);
 
-    ResponseEntity<?> searchMovie(String name);
     ResponseEntity<?> getMovieById(String movieId);
 
     ResponseEntity<?> updateMovie(MovieRequest movieRequest, String movieId);

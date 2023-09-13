@@ -23,13 +23,12 @@ public class AdminShowController {
     }
 
     @GetMapping("/movie")
-    public ResponseEntity<?> getAllMovies() {
-        return iMovieBusiness.getAllMovies();
-    }
-
-    @GetMapping("/movie/search")
-    public ResponseEntity<?> getMovieByName(@RequestParam String name) {
-        return iMovieBusiness.searchMovie(name);
+    public ResponseEntity<?> getAllMovies(
+            @RequestParam(name = "search", required = false) String movieName,
+            @RequestParam(name = "pageNo", defaultValue = "1") Integer pageNo,
+            @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize
+    ) {
+        return iMovieBusiness.getMovies(movieName, pageNo, pageSize);
     }
 
     @GetMapping("/movie/{movieId}/get")

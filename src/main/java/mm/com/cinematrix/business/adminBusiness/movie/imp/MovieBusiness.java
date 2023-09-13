@@ -8,11 +8,14 @@ import mm.com.cinematrix.business.dto.MovieRequest;
 import mm.com.cinematrix.db.model.Movie;
 import mm.com.cinematrix.db.repo.MovieRepo;
 import mm.com.cinematrix.util.CinematrixResponse;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -36,14 +39,10 @@ public class MovieBusiness extends BaseBusiness implements IMovieBusiness {
     }
 
     @Override
-    public ResponseEntity<?> getAllMovies() {
-        List<Movie> movies = movieRepo.findAll();
-        return ResponseUtil.onDefaultSuccess(movies);
-    }
-
-    @Override
-    public ResponseEntity<?> searchMovie(String name) {
-        List<Movie> movies = movieRepo.searchMovie(name);
+    public ResponseEntity<?> getMovies(String name, int pageNo, int pageSize) {
+        Sort sort = Sort.by("created_date").descending();
+        Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
+        Page<Movie> movies = movieRepo.getMovies(name, pageable);
         return ResponseUtil.onDefaultSuccess(movies);
     }
 
