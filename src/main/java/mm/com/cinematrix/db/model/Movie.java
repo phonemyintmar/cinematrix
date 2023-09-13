@@ -37,6 +37,8 @@ public class Movie {
 
     private int moviePriority;
 
+    private String featureUrl;
+
     private Boolean isFeatured;
 
     private LocalDate startDate;
@@ -52,7 +54,7 @@ public class Movie {
     @JsonIgnore
     private Double totalIncome;
 
-    public Movie(String movieId, String movieName, String movieCast, String genre, String bannerUrl, String trailerUrl, String description, MovieType movieType, int moviePriority, Boolean isFeatured, LocalDate startDate, LocalDate endDate) {
+    public Movie(String movieId, String movieName, String movieCast, String genre, String bannerUrl, String trailerUrl, String description, MovieType movieType, int moviePriority, String featureUrl,Boolean isFeatured, LocalDate startDate, LocalDate endDate) {
         this.movieId = movieId;
         this.movieName = movieName;
         this.movieCast = movieCast;
@@ -62,6 +64,7 @@ public class Movie {
         this.description = description;
         this.movieType = movieType;
         this.moviePriority = moviePriority;
+        this.featureUrl = featureUrl;
         this.isFeatured = isFeatured;
         this.startDate = startDate;
         this.endDate = endDate;

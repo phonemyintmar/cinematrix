@@ -25,6 +25,9 @@ public class MovieBusiness extends BaseBusiness implements IMovieBusiness {
 
     @Override
     public ResponseEntity<?> addMovie(MovieRequest movieRequest) {
+        if (checkFeatured(movieRequest)) {
+            return ResponseUtil.on4xxError();
+        }
         try {
             movieRepo.save((Movie) changeMovieRequest(movieRequest));
         } catch (Exception e) {
@@ -36,6 +39,9 @@ public class MovieBusiness extends BaseBusiness implements IMovieBusiness {
 
     @Override
     public ResponseEntity<?> updateMovie(MovieRequest movieRequest, String movieId) {
+        if (checkFeatured(movieRequest)) {
+            return ResponseUtil.on4xxError();
+        }
         Optional<Movie> movieOp = movieRepo.findByMovieId(movieId);
         if (movieOp.isEmpty()) return ResponseUtil.onError(CinematrixResponse.WRONG_REQUEST, HttpStatus.NOT_FOUND);
 
