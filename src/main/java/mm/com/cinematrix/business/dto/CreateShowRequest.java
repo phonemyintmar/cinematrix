@@ -1,4 +1,4 @@
-package mm.com.cinematrix.business.show.dto;
+package mm.com.cinematrix.business.dto;
 
 import lombok.Getter;
 import lombok.Setter;

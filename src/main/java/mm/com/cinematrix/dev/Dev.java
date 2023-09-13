@@ -12,4 +12,8 @@ public class Dev {
         this.roleUtil = roleUtil;
     }
 
+//    private void test(){
+//        roleUtil.addRole("SUPER_ADMIN");
+//    }
+
 }

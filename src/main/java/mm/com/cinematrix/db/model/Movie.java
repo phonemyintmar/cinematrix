@@ -1,16 +1,20 @@
 package mm.com.cinematrix.db.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "cn_movie")
 @Setter
 @Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Movie {
 
     @Id
@@ -18,7 +22,7 @@ public class Movie {
 
     private String movieName;
 
-    private String cast;
+    private String movieCast;
 
     private String genre;
 
@@ -33,8 +37,36 @@ public class Movie {
 
     private int moviePriority;
 
+    private String featureUrl;
+
+    private Boolean isFeatured;
+
+    private LocalDate startDate;
+
+    private LocalDate endDate;
+
+    @UpdateTimestamp
     private LocalDateTime updatedDate;
+
+    @CreationTimestamp
+    private LocalDateTime createdDate;
 
     @JsonIgnore
     private Double totalIncome;
+
+    public Movie(String movieId, String movieName, String movieCast, String genre, String bannerUrl, String trailerUrl, String description, MovieType movieType, int moviePriority, String featureUrl,Boolean isFeatured, LocalDate startDate, LocalDate endDate) {
+        this.movieId = movieId;
+        this.movieName = movieName;
+        this.movieCast = movieCast;
+        this.genre = genre;
+        this.bannerUrl = bannerUrl;
+        this.trailerUrl = trailerUrl;
+        this.description = description;
+        this.movieType = movieType;
+        this.moviePriority = moviePriority;
+        this.featureUrl = featureUrl;
+        this.isFeatured = isFeatured;
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
 }
