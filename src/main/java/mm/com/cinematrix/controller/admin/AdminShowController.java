@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/admin")
 @CrossOrigin
-@RolesAllowed("ROLE_SUPER_ADMIN")
+@RolesAllowed("ROLE_ADMIN")
 public class AdminShowController {
 
     @PostMapping("")
@@ -21,7 +21,8 @@ public class AdminShowController {
     }
 
     @GetMapping("/test")
-    public String test(){
-        return "lee";
+    public String test(Principal principal){
+        System.out.println(principal);
+        return "test";
     }
 }
